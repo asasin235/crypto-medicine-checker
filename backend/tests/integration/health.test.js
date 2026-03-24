@@ -3,6 +3,9 @@ const test = require("node:test");
 
 const request = require("supertest");
 
+process.env.NODE_ENV = "test";
+process.env.DB_HEALTHCHECK_DISABLED = "true";
+
 const app = require("../../src/index");
 
 test("GET /health returns API and database status", async () => {

@@ -2,7 +2,7 @@ const cors = require("cors");
 const express = require("express");
 const helmet = require("helmet");
 
-const { getDatabaseHealthStatus } = require("./config/db");
+const { checkDatabaseHealth } = require("./config/db");
 const errorHandler = require("./middleware/error-handler");
 const notFoundHandler = require("./middleware/not-found");
 const registerRoutes = require("./routes");
@@ -14,11 +14,17 @@ function createApp() {
   app.use(cors());
   app.use(express.json());
 
-  app.get("/health", (req, res) => {
-    res.status(200).json({
-      status: "ok",
-      db: getDatabaseHealthStatus(),
-    });
+  app.get("/health", async (req, res, next) => {
+    try {
+      const dbStatus = await checkDatabaseHealth();
+
+      res.status(200).json({
+        status: "ok",
+        db: dbStatus,
+      });
+    } catch (error) {
+      next(error);
+    }
   });
 
   registerRoutes(app);
