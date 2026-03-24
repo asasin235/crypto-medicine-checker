@@ -26,6 +26,8 @@ npm run build
 npm run dev
 ```
 
+Auth tokens are currently stored in `localStorage` as a development placeholder. Before production, migrate to an `httpOnly` cookie/session approach and enforce strict XSS protections.
+
 ## Docker
 
 Start the full stack with:

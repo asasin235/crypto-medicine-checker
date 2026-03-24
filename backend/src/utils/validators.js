@@ -45,11 +45,13 @@ const batchCreationSchema = Joi.object({
     .default("created"),
 }).custom((value, helpers) => {
   if (new Date(value.expiry_date) < new Date(value.manufacture_date)) {
-    return helpers.error("date.min");
+    return helpers.error("batch.expiry_date.min");
   }
 
   return value;
-}, "batch date validation");
+}, "batch date validation").messages({
+  "batch.expiry_date.min": "expiry_date must be greater than or equal to manufacture_date",
+});
 
 const prescriptionCreationSchema = Joi.object({
   patient_id: Joi.number().integer().positive().required(),
