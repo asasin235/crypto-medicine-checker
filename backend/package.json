@@ -7,8 +7,10 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
-    "test": "node --test tests/integration/*.test.js",
-    "test:integration": "node --test tests/integration/*.test.js"
+    "test": "jest --runInBand",
+    "test:unit": "jest --runInBand tests/unit",
+    "test:integration": "jest --runInBand tests/integration",
+    "test:coverage": "jest --coverage --runInBand"
   },
   "engines": {
     "node": ">=20.0.0"
@@ -20,6 +22,7 @@
     "mysql2": "^3.14.1"
   },
   "devDependencies": {
+    "jest": "^30.0.5",
     "supertest": "^7.1.1"
   }
 }

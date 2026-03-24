@@ -1,29 +1,25 @@
-const assert = require("node:assert/strict");
-const test = require("node:test");
-
 const request = require("supertest");
-
-process.env.NODE_ENV = "test";
-process.env.DB_HEALTHCHECK_DISABLED = "true";
 
 const app = require("../../src/index");
 
-test("GET /health returns API and database status", async () => {
+describe("health endpoints", () => {
+  test("GET /health returns API and database status", async () => {
   const response = await request(app).get("/health");
 
-  assert.equal(response.statusCode, 200);
-  assert.deepEqual(response.body, {
-    status: "ok",
-    db: "connected",
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toEqual({
+      status: "ok",
+      db: "connected",
+    });
   });
-});
 
-test("unknown routes return structured JSON errors", async () => {
-  const response = await request(app).get("/missing-route");
+  test("unknown routes return structured JSON errors", async () => {
+    const response = await request(app).get("/missing-route");
 
-  assert.equal(response.statusCode, 404);
-  assert.deepEqual(response.body, {
-    success: false,
-    error: "Route /missing-route not found",
+    expect(response.statusCode).toBe(404);
+    expect(response.body).toEqual({
+      success: false,
+      error: "Route /missing-route not found",
+    });
   });
 });
