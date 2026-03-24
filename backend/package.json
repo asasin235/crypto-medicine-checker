@@ -1,0 +1,24 @@
+{
+  "name": "crypto-medicine-checker-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Backend API for the crypto medicine checker project",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --test tests/integration/*.test.js",
+    "test:integration": "node --test tests/integration/*.test.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "helmet": "^8.1.0"
+  },
+  "devDependencies": {
+    "supertest": "^7.1.1"
+  }
+}
