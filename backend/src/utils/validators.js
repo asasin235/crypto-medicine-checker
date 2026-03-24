@@ -6,12 +6,10 @@ const licenseSchema = Joi.string().pattern(/^[A-Z0-9-]{6,32}$/).required();
 
 const stakeholderRegistrationSchema = Joi.object({
   role: Joi.string()
-    .valid("manufacturer", "distributor", "pharmacy", "regulator")
+    .valid("manufacturer", "distributor", "pharmacy", "doctor")
     .required(),
-  company_name: Joi.string().min(2).max(255).required(),
-  contact_name: Joi.string().min(2).max(255).required(),
+  name: Joi.string().min(2).max(255).required(),
   email: Joi.string().email().required(),
-  aadhaar_number: aadhaarSchema,
   license_number: licenseSchema,
   password: Joi.string().min(8).max(128).required(),
 });

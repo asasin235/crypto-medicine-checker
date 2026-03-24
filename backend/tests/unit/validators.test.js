@@ -10,10 +10,8 @@ describe("validation schemas", () => {
   test("stakeholder registration rejects malformed license numbers", () => {
     const { error } = stakeholderRegistrationSchema.validate({
       role: "manufacturer",
-      company_name: "Acme Pharma",
-      contact_name: "Aatif Rashid",
+      name: "Acme Pharma",
       email: "aatif@example.com",
-      aadhaar_number: "123456789012",
       license_number: "bad-license",
       password: "supersecret",
     });
