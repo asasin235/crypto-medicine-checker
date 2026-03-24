@@ -1,3 +1,16 @@
-const createStubRouter = require("./create-stub-router");
+const express = require("express");
 
-module.exports = createStubRouter("Auth");
+const { authenticateLogin } = require("../services/auth.service");
+
+const router = express.Router();
+
+router.post("/login", async (req, res, next) => {
+  try {
+    const result = await authenticateLogin(req.body);
+    res.status(200).json(result);
+  } catch (error) {
+    next(error);
+  }
+});
+
+module.exports = router;
