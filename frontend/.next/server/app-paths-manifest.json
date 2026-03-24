@@ -1,0 +1,13 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/batches/page": "app/batches/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/ledger/page": "app/ledger/page.js",
+  "/login/page": "app/login/page.js",
+  "/page": "app/page.js",
+  "/patients/page": "app/patients/page.js",
+  "/medicines/page": "app/medicines/page.js",
+  "/prescriptions/page": "app/prescriptions/page.js",
+  "/stakeholders/page": "app/stakeholders/page.js",
+  "/verification/page": "app/verification/page.js"
+}
