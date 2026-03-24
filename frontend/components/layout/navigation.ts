@@ -13,6 +13,7 @@ import {
 export const navigationLinks = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/login", label: "Login", icon: ShieldCheck },
+  { href: "/register", label: "Register", icon: Activity },
   { href: "/stakeholders", label: "Stakeholders", icon: Factory },
   { href: "/patients", label: "Patients", icon: Activity },
   { href: "/medicines", label: "Medicines", icon: Pill },

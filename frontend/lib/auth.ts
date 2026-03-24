@@ -1,4 +1,12 @@
 const TOKEN_KEY = "cmc_auth_token";
+const USER_KEY = "cmc_auth_user";
+
+export type AuthUser = {
+  id: number;
+  name: string;
+  role: string;
+  type: "stakeholder" | "patient";
+};
 
 function readTokenPayload(token: string) {
   const [, payload] = token.split(".");
@@ -28,9 +36,34 @@ export function setToken(token: string) {
   }
 }
 
+export function getStoredUser(): AuthUser | null {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  const rawUser = window.localStorage.getItem(USER_KEY);
+
+  if (!rawUser) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(rawUser) as AuthUser;
+  } catch {
+    return null;
+  }
+}
+
+export function setStoredUser(user: AuthUser) {
+  if (typeof window !== "undefined") {
+    window.localStorage.setItem(USER_KEY, JSON.stringify(user));
+  }
+}
+
 export function clearToken() {
   if (typeof window !== "undefined") {
     window.localStorage.removeItem(TOKEN_KEY);
+    window.localStorage.removeItem(USER_KEY);
   }
 }
 
