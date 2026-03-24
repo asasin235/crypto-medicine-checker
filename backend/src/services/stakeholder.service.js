@@ -5,6 +5,7 @@ const { getConnection } = require("../config/db");
 const { decryptPrivateKey, encryptPrivateKey, generateKeyPair } = require("./crypto.service");
 const { issueCertificate } = require("./certificate.service");
 const { appendLedgerEntry } = require("./ledger.service");
+const { getPool } = require("../config/db");
 
 async function loadCentralAuthority(connection, userId) {
   const [rows] = await connection.execute(
@@ -104,5 +105,26 @@ async function registerStakeholder(currentUser, payload) {
 }
 
 module.exports = {
+  async getStakeholderCountsByRole() {
+    const pool = getPool();
+    const [rows] = await pool.execute(
+      "SELECT role, COUNT(*) AS total FROM stakeholders GROUP BY role ORDER BY role ASC"
+    );
+
+    return rows.map((row) => ({
+      role: row.role,
+      total: Number(row.total),
+    }));
+  },
+  async listStakeholders() {
+    const pool = getPool();
+    const [rows] = await pool.execute(
+      `SELECT id, role, name, email, license_number, certificate_status, created_at
+       FROM stakeholders
+       ORDER BY created_at DESC`
+    );
+
+    return rows;
+  },
   registerStakeholder,
 };

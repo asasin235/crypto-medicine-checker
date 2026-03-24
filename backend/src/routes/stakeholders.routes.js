@@ -2,10 +2,38 @@ const express = require("express");
 
 const { auth, roleGuard } = require("../middleware/auth");
 const validate = require("../middleware/validate");
-const { registerStakeholder } = require("../services/stakeholder.service");
+const {
+  getStakeholderCountsByRole,
+  listStakeholders,
+  registerStakeholder,
+} = require("../services/stakeholder.service");
 const { stakeholderRegistrationSchema } = require("../utils/validators");
 
 const router = express.Router();
+
+router.get("/stats", auth, roleGuard("central_authority"), async (req, res, next) => {
+  try {
+    const counts = await getStakeholderCountsByRole();
+    res.status(200).json({
+      success: true,
+      counts,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get("/", auth, roleGuard("central_authority"), async (req, res, next) => {
+  try {
+    const stakeholders = await listStakeholders();
+    res.status(200).json({
+      success: true,
+      stakeholders,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
 
 router.post(
   "/",
