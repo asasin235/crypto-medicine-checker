@@ -6,6 +6,9 @@ const { checkDatabaseHealth } = require("./config/db");
 const errorHandler = require("./middleware/error-handler");
 const notFoundHandler = require("./middleware/not-found");
 const registerRoutes = require("./routes");
+const { createLogger } = require("./utils/logger");
+
+const logger = createLogger("index.js");
 
 function createApp() {
   const app = express();
@@ -41,7 +44,7 @@ if (require.main === module) {
   const port = Number(process.env.PORT) || 3001;
 
   app.listen(port, () => {
-    console.log(`Backend server listening on port ${port}`);
+    logger.info(`Backend server listening on port ${port}`);
   });
 }
 
