@@ -16,9 +16,10 @@ const stakeholderRegistrationSchema = Joi.object({
 
 const patientRegistrationSchema = Joi.object({
   full_name: Joi.string().min(2).max(255).required(),
-  email: Joi.string().email().optional(),
+  email: Joi.string().email().required(),
   aadhaar_number: aadhaarSchema,
   date_of_birth: isoDateSchema,
+  password: Joi.string().min(8).max(128).required(),
 });
 
 const medicineCreationSchema = Joi.object({

@@ -25,6 +25,7 @@ describe("validation schemas", () => {
       email: "patient@example.com",
       aadhaar_number: "123",
       date_of_birth: "1998-01-01",
+      password: "patient-secret",
     });
 
     expect(error).toBeDefined();
