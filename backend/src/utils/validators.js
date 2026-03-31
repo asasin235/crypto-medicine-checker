@@ -32,7 +32,6 @@ const medicineCreationSchema = Joi.object({
 
 const batchCreationSchema = Joi.object({
   medicine_id: Joi.number().integer().positive().required(),
-  manufacturer_id: Joi.number().integer().positive().required(),
   current_owner_id: Joi.number().integer().positive().allow(null),
   batch_number: Joi.string().min(3).max(64).required(),
   manufacture_date: isoDateSchema,

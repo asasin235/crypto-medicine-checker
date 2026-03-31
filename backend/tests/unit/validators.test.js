@@ -46,7 +46,6 @@ describe("validation schemas", () => {
   test("batch creation enforces expiry after manufacture", () => {
     const { error } = batchCreationSchema.validate({
       medicine_id: 1,
-      manufacturer_id: 1,
       current_owner_id: null,
       batch_number: "BATCH-001",
       manufacture_date: "2026-03-24",
