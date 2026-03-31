@@ -3,6 +3,7 @@ const express = require("express");
 const { auth, roleGuard } = require("../middleware/auth");
 const validate = require("../middleware/validate");
 const { createBatch, getBatchById, listBatches } = require("../services/batch.service");
+const { generateUnitsForBatch } = require("../services/medicine-unit.service");
 const { batchCreationSchema } = require("../utils/validators");
 
 const router = express.Router();
@@ -24,6 +25,24 @@ router.get("/:id", auth, async (req, res, next) => {
     next(error);
   }
 });
+
+router.post(
+  "/:id/generate-units",
+  auth,
+  roleGuard("manufacturer"),
+  async (req, res, next) => {
+    try {
+      const units = await generateUnitsForBatch(
+        req.user,
+        Number(req.params.id),
+        req.body.count ? Number(req.body.count) : undefined
+      );
+      res.status(201).json({ success: true, units, total: units.length });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 router.post(
   "/",
