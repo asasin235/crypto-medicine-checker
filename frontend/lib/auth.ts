@@ -1,4 +1,4 @@
-const TOKEN_KEY = "cmc_auth_token";
+export const TOKEN_KEY = "cmc_auth_token";
 const USER_KEY = "cmc_auth_user";
 
 export type AuthUser = {
@@ -8,6 +8,13 @@ export type AuthUser = {
   type: "stakeholder" | "patient";
 };
 
+function decodeBase64Url(value: string) {
+  const paddedValue = value.replace(/-/g, "+").replace(/_/g, "/");
+  const paddingLength = (4 - (paddedValue.length % 4)) % 4;
+  const padded = `${paddedValue}${"=".repeat(paddingLength)}`;
+  return atob(padded);
+}
+
 function readTokenPayload(token: string) {
   const [, payload] = token.split(".");
 
@@ -16,7 +23,7 @@ function readTokenPayload(token: string) {
   }
 
   try {
-    return JSON.parse(atob(payload));
+    return JSON.parse(decodeBase64Url(payload));
   } catch {
     return null;
   }

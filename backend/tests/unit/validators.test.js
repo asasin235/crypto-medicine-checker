@@ -56,6 +56,9 @@ describe("validation schemas", () => {
     });
 
     expect(error).toBeDefined();
+    expect(error.details[0].message).toBe(
+      "expiry_date must be greater than or equal to manufacture_date"
+    );
   });
 
   test("prescription creation requires patient and medicine references", () => {
