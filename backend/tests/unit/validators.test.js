@@ -33,7 +33,6 @@ describe("validation schemas", () => {
 
   test("medicine creation accepts a valid payload", () => {
     const { error } = medicineCreationSchema.validate({
-      manufacturer_id: 1,
       name: "Verified Medicine",
       sku: "MED-001",
       description: "Core medicine record",

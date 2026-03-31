@@ -23,7 +23,6 @@ const patientRegistrationSchema = Joi.object({
 });
 
 const medicineCreationSchema = Joi.object({
-  manufacturer_id: Joi.number().integer().positive().required(),
   name: Joi.string().min(2).max(255).required(),
   sku: Joi.string().min(3).max(64).required(),
   description: Joi.string().max(2000).allow("", null),
