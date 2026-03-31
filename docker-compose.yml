@@ -1,0 +1,64 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: crypto-medicine-checker-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: pharma_chain
+      MYSQL_USER: pharma
+      MYSQL_PASSWORD: pharma
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./backend/src/migrations/001_initial_schema.sql:/docker-entrypoint-initdb.d/001_initial_schema.sql:ro
+      - ./backend/src/migrations/002_auth_core.sql:/docker-entrypoint-initdb.d/002_auth_core.sql:ro
+      - ./backend/src/migrations/003_stakeholder_certificates.sql:/docker-entrypoint-initdb.d/003_stakeholder_certificates.sql:ro
+      - ./backend/src/migrations/004_patient_aadhaar_hash.sql:/docker-entrypoint-initdb.d/004_patient_aadhaar_hash.sql:ro
+      - ./backend/src/seeds/001_genesis_ledger_block.sql:/docker-entrypoint-initdb.d/005_genesis_ledger_block.sql:ro
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    command: sh -c "node src/migrations/seed.js && npm start"
+    container_name: crypto-medicine-checker-backend
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      PORT: 3001
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: pharma
+      DB_PASSWORD: pharma
+      DB_NAME: pharma_chain
+      KEY_ENCRYPTION_PASSPHRASE: dev-key-passphrase
+      CA_ADMIN_EMAIL: admin@pharmachain.local
+      CA_ADMIN_NAME: PharmaChain Central Authority
+      CA_ADMIN_PASSWORD: admin123
+    ports:
+      - "3001:3001"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:3001
+    container_name: crypto-medicine-checker-frontend
+    depends_on:
+      backend:
+        condition: service_started
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:3001
+    ports:
+      - "3000:3000"
+
+volumes:
+  mysql-data:
