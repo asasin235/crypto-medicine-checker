@@ -54,11 +54,11 @@ function LoginForm() {
   }
 
   return (
-    <section className="mx-auto max-w-xl rounded-[2rem] border border-border bg-white/85 p-8 shadow-glow">
-      <p className="text-xs uppercase tracking-[0.3em] text-ink/55">Secure Access</p>
+    <section className="mx-auto max-w-xl rounded-2xl border border-border bg-white p-8 shadow-card">
+      <p className="text-xs font-semibold uppercase tracking-wider text-accent">Welcome back</p>
       <h1 className="mt-3 text-3xl font-semibold text-ink">Sign in to PharmaChain</h1>
-      <p className="mt-3 text-sm text-ink/70">
-        The login endpoint returns a JWT and role-aware user profile for stakeholders and patients.
+      <p className="mt-3 text-sm text-ink-muted">
+        Access your supply chain dashboard.
       </p>
 
       <form className="mt-8 grid gap-5" onSubmit={handleSubmit}>
@@ -66,7 +66,7 @@ function LoginForm() {
           <Label htmlFor="type">Login type</Label>
           <select
             id="type"
-            className="h-11 rounded-2xl border border-border bg-white px-4 text-sm text-ink shadow-sm outline-none focus:border-accent"
+            className="h-11 rounded-xl border border-border bg-white px-4 text-sm text-ink shadow-sm outline-none focus:border-accent"
             value={formState.type}
             onChange={(event) =>
               setFormState((current) => ({
@@ -118,7 +118,7 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<section className="mx-auto max-w-xl rounded-[2rem] border border-border bg-white/85 p-8 shadow-glow" />}>
+    <Suspense fallback={<section className="mx-auto max-w-xl rounded-2xl border border-border bg-white p-8 shadow-card" />}>
       <LoginForm />
     </Suspense>
   );

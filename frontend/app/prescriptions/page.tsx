@@ -4,12 +4,12 @@ export default function PrescriptionsPage() {
   return (
     <PageHero
       eyebrow="Dispensing"
-      title="Prescription workspace placeholder"
-      description="Prescription creation, dosage capture, and dispensing verification will live on this page."
+      title="Prescription management"
+      description="Track prescriptions from issuance to fulfilment — every dispensing event recorded on the ledger."
       stats={[
-        { label: "Form shell", value: "Ready" },
-        { label: "Validation", value: "Backend ready" },
-        { label: "Auditability", value: "Planned" },
+        { label: "Active", value: "—" },
+        { label: "Fulfilled", value: "—" },
+        { label: "Pending review", value: "—" },
       ]}
     />
   );

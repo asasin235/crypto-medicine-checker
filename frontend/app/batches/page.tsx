@@ -3,13 +3,13 @@ import { PageHero } from "@/components/layout/page-hero";
 export default function BatchesPage() {
   return (
     <PageHero
-      eyebrow="Inventory"
-      title="Batch tracking placeholder"
-      description="Batch issue, transfer, and expiry monitoring will use this route as the operational surface."
+      eyebrow="Tracking"
+      title="Batch management"
+      description="Monitor active batches through the supply chain — from manufacturer dispatch to pharmacy delivery."
       stats={[
-        { label: "Batch flow", value: "Planned" },
-        { label: "Ledger sync", value: "Pending" },
-        { label: "Mobile checks", value: "Supported" },
+        { label: "Active batches", value: "—" },
+        { label: "In transit", value: "—" },
+        { label: "Dispensed", value: "—" },
       ]}
     />
   );

@@ -3,13 +3,13 @@ import { PageHero } from "@/components/layout/page-hero";
 export default function VerificationPage() {
   return (
     <PageHero
-      eyebrow="Field Check"
-      title="Verification placeholder"
-      description="Scan-and-verify flows for inspectors, pharmacists, and patients will land here."
+      eyebrow="Security"
+      title="Medicine verification"
+      description="Scan QR codes to verify medicine authenticity — RSA-signed and blockchain-backed for tamper detection."
       stats={[
-        { label: "Scan UX", value: "Planned" },
-        { label: "Fraud alerts", value: "Pending" },
-        { label: "Mobile shell", value: "Ready" },
+        { label: "Scans today", value: "—" },
+        { label: "Verified", value: "—" },
+        { label: "Flagged", value: "—" },
       ]}
     />
   );

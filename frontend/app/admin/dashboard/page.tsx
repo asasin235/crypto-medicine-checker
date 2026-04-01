@@ -29,10 +29,10 @@ export default function AdminDashboardPage() {
   return (
     <ProtectedRoute roles={["central_authority"]}>
       <section className="space-y-6">
-        <div className="rounded-[2rem] bg-secondary p-8">
-          <p className="text-xs uppercase tracking-[0.3em] text-ink/55">Central Authority</p>
+        <div className="rounded-2xl bg-secondary p-8">
+          <p className="text-xs font-semibold uppercase tracking-wider text-accent">Central Authority</p>
           <h1 className="mt-3 text-3xl font-semibold text-ink">Admin dashboard</h1>
-          <p className="mt-3 max-w-2xl text-sm text-ink/70">
+          <p className="mt-3 max-w-2xl text-sm text-ink-muted">
             Review stakeholder distribution and jump directly into registration operations.
           </p>
         </div>
@@ -43,9 +43,9 @@ export default function AdminDashboardPage() {
           {counts.map((count) => (
             <article
               key={count.role}
-              className="rounded-[2rem] border border-border bg-white/80 p-6 shadow-sm"
+              className="rounded-2xl border border-border bg-white p-6 shadow-card"
             >
-              <p className="text-sm capitalize text-ink/60">{count.role.replace("_", " ")}</p>
+              <p className="text-sm capitalize text-ink-muted">{count.role.replace("_", " ")}</p>
               <p className="mt-4 text-4xl font-semibold text-ink">{count.total}</p>
             </article>
           ))}

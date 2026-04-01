@@ -3,13 +3,13 @@ import { PageHero } from "@/components/layout/page-hero";
 export default function LedgerPage() {
   return (
     <PageHero
-      eyebrow="Chain"
-      title="Ledger placeholder"
-      description="Genesis block visibility, chain inspection, and transfer history will be surfaced here."
+      eyebrow="Blockchain"
+      title="Audit ledger"
+      description="Immutable hash-chained ledger recording every supply chain event — from batch creation to patient dispensing."
       stats={[
-        { label: "Genesis seed", value: "Configured" },
-        { label: "Chain explorer", value: "Pending" },
-        { label: "Audit trail", value: "Planned" },
+        { label: "Total blocks", value: "—" },
+        { label: "Chain integrity", value: "—" },
+        { label: "Last event", value: "—" },
       ]}
     />
   );

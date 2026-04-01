@@ -3,13 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --surface: #f7f3ea;
-  --ink: #16302b;
-  --accent: #00796b;
-  --secondary: #f4d8c6;
-  --border: rgba(22, 48, 43, 0.12);
-  --muted: rgba(22, 48, 43, 0.64);
-  --font-sans: "Avenir Next", "Segoe UI", sans-serif;
+  --surface:       #f8fafc;
+  --ink:           #0f172a;
+  --accent:        #0284c7;
+  --accent-hover:  #0369a1;
+  --accent-subtle: #f0f9ff;
+  --secondary:     #e0f2fe;
+  --border:        #e2e8f0;
+  --muted:         #64748b;
+  --ink-muted:     #475569;
+  --font-sans:     "Inter", "Segoe UI", system-ui, sans-serif;
 }
 
 * {
@@ -26,6 +29,8 @@ body {
   background: var(--surface);
   color: var(--ink);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {

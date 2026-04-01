@@ -22,10 +22,10 @@ export function NavLink({ href, label, icon: Icon, onNavigate }: NavLinkProps) {
       href={href}
       onClick={onNavigate}
       className={cn(
-        "flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition",
+        "flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition",
         isActive
-          ? "bg-accent text-white shadow-glow"
-          : "text-ink/75 hover:bg-white/80 hover:text-ink"
+          ? "bg-accent text-white shadow-soft"
+          : "text-ink-muted hover:bg-accent-subtle hover:text-accent"
       )}
     >
       <Icon className="h-4 w-4" />

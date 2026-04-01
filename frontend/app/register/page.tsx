@@ -45,11 +45,11 @@ export default function RegisterPage() {
   }
 
   return (
-    <section className="mx-auto max-w-2xl rounded-[2rem] border border-border bg-white/85 p-8 shadow-glow">
-      <p className="text-xs uppercase tracking-[0.3em] text-ink/55">Patient Access</p>
-      <h1 className="mt-3 text-3xl font-semibold text-ink">Self-register with Aadhaar</h1>
-      <p className="mt-3 text-sm text-ink/70">
-        Patient registration stores a hashed Aadhaar value and creates your login-ready record.
+    <section className="mx-auto max-w-2xl rounded-2xl border border-border bg-white p-8 shadow-card">
+      <p className="text-xs font-semibold uppercase tracking-wider text-accent">Patient Access</p>
+      <h1 className="mt-3 text-3xl font-semibold text-ink">Create your patient account</h1>
+      <p className="mt-3 text-sm text-ink-muted">
+        Register with your Aadhaar to track prescriptions and verify medicines.
       </p>
 
       <form className="mt-8 grid gap-5" onSubmit={handleSubmit}>

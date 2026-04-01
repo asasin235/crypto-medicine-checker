@@ -7,8 +7,8 @@ import { AppShell } from "@/components/layout/app-shell";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Crypto Medicine Checker",
-  description: "Frontend shell for the pharma traceability platform",
+  title: "PharmaChain",
+  description: "Blockchain-verified pharmaceutical supply chain platform",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

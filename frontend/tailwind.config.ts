@@ -9,22 +9,26 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        surface: "var(--surface)",
-        ink: "var(--ink)",
-        accent: "var(--accent)",
-        secondary: "var(--secondary)",
-        border: "var(--border)",
-        muted: "var(--muted)",
+        surface:        "var(--surface)",
+        ink:            "var(--ink)",
+        accent:         "var(--accent)",
+        "accent-hover": "var(--accent-hover)",
+        "accent-subtle":"var(--accent-subtle)",
+        secondary:      "var(--secondary)",
+        border:         "var(--border)",
+        muted:          "var(--muted)",
+        "ink-muted":    "var(--ink-muted)",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "ui-sans-serif", "system-ui"],
       },
       boxShadow: {
-        glow: "0 20px 60px rgba(0, 77, 64, 0.18)",
+        soft:     "0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)",
+        card:     "0 4px 16px rgba(0,0,0,0.06)",
+        elevated: "0 12px 40px rgba(0,0,0,0.08)",
       },
       backgroundImage: {
-        mesh:
-          "radial-gradient(circle at top left, rgba(0, 121, 107, 0.18), transparent 35%), radial-gradient(circle at bottom right, rgba(255, 138, 101, 0.2), transparent 30%)",
+        "hero-gradient": "linear-gradient(135deg, #f0f9ff 0%, #f8fafc 60%, #ffffff 100%)",
       },
     },
   },

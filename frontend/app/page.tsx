@@ -7,13 +7,13 @@ export default function HomePage() {
   return (
     <div className="space-y-8">
       <PageHero
-        eyebrow="Sprint 1 Foundation"
-        title="Trace every batch from manufacturer to patient."
-        description="This frontend shell gives the project a shared navigation model, responsive layout, and the placeholder surfaces needed to layer in auth, inventory, prescriptions, and verification workflows."
+        eyebrow="Blockchain-Verified"
+        title="Secure pharmaceutical traceability from manufacturer to patient."
+        description="Track every medicine unit through the entire supply chain — verified with cryptographic signatures, recorded on an immutable ledger, and secured with Aadhaar identity."
         stats={[
-          { label: "Placeholder routes", value: "9" },
-          { label: "Shell state", value: "Ready" },
-          { label: "API target", value: "3001" },
+          { label: "Supply Chain Roles", value: "4" },
+          { label: "Verification", value: "Blockchain" },
+          { label: "Patient Identity", value: "Aadhaar-Secured" },
         ]}
       >
         <div className="flex flex-wrap gap-3">
@@ -21,19 +21,29 @@ export default function HomePage() {
             <Button>Open Dashboard</Button>
           </Link>
           <Link href="/verification">
-            <Button variant="secondary">Open Verification</Button>
+            <Button variant="secondary">Verify Medicine</Button>
           </Link>
         </div>
       </PageHero>
 
       <section className="grid gap-4 md:grid-cols-3">
         {[
-          "Responsive layout with sidebar, top bar, and footer",
-          "Tailwind and shadcn-style UI primitives configured",
-          "JWT storage helpers and Axios API client ready",
-        ].map((item) => (
-          <article key={item} className="rounded-[2rem] border border-border bg-white/80 p-6">
-            <p className="text-sm leading-7 text-ink/75">{item}</p>
+          {
+            title: "Cryptographic Signatures",
+            body: "Every medicine unit carries an RSA-signed QR code — tamper-evident and verifiable anywhere in the chain.",
+          },
+          {
+            title: "Immutable Ledger",
+            body: "Hash-chained audit trail records every supply chain event from batch creation to patient dispensing.",
+          },
+          {
+            title: "Role-Based Access",
+            body: "Manufacturer, distributor, pharmacy, doctor, and patient — each with tailored permissions and views.",
+          },
+        ].map((card) => (
+          <article key={card.title} className="rounded-2xl border border-border bg-white p-6 shadow-soft">
+            <p className="text-sm font-semibold text-ink">{card.title}</p>
+            <p className="mt-2 text-sm leading-7 text-ink-muted">{card.body}</p>
           </article>
         ))}
       </section>

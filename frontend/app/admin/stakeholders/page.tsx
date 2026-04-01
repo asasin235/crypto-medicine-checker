@@ -77,11 +77,11 @@ export default function AdminStakeholdersPage() {
   return (
     <ProtectedRoute roles={["central_authority"]}>
       <section className="space-y-6">
-        <div className="flex flex-col gap-4 rounded-[2rem] bg-secondary p-8 lg:flex-row lg:items-end lg:justify-between">
+        <div className="flex flex-col gap-4 rounded-2xl bg-secondary p-8 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-ink/55">Stakeholder Registry</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-accent">Stakeholder Registry</p>
             <h1 className="mt-3 text-3xl font-semibold text-ink">Register and manage stakeholders</h1>
-            <p className="mt-3 max-w-2xl text-sm text-ink/70">
+            <p className="mt-3 max-w-2xl text-sm text-ink-muted">
               Search and sort the stakeholder directory, then open the registration dialog for new
               manufacturers, distributors, pharmacies, and doctors.
             </p>
@@ -92,14 +92,14 @@ export default function AdminStakeholdersPage() {
 
         {error ? <Alert>{error}</Alert> : null}
 
-        <div className="grid gap-4 rounded-[2rem] border border-border bg-white/80 p-5 md:grid-cols-[1fr_180px]">
+        <div className="grid gap-4 rounded-2xl border border-border bg-white p-5 md:grid-cols-[1fr_180px]">
           <Input
             placeholder="Search by name, email, or role"
             value={search}
             onChange={(event) => setSearch(event.target.value)}
           />
           <select
-            className="h-11 rounded-2xl border border-border bg-white px-4 text-sm text-ink shadow-sm outline-none"
+            className="h-11 rounded-xl border border-border bg-white px-4 text-sm text-ink shadow-sm outline-none"
             value={sortBy}
             onChange={(event) => setSortBy(event.target.value as "name" | "role")}
           >
@@ -108,9 +108,9 @@ export default function AdminStakeholdersPage() {
           </select>
         </div>
 
-        <div className="overflow-hidden rounded-[2rem] border border-border bg-white/85 shadow-sm">
+        <div className="overflow-hidden rounded-2xl border border-border bg-white shadow-soft">
           <table className="min-w-full divide-y divide-border text-left text-sm">
-            <thead className="bg-slate-50 text-ink/70">
+            <thead className="bg-slate-50 text-ink-muted">
               <tr>
                 <th className="px-5 py-4 font-medium">Name</th>
                 <th className="px-5 py-4 font-medium">Role</th>
@@ -123,11 +123,11 @@ export default function AdminStakeholdersPage() {
               {filteredStakeholders.map((stakeholder) => (
                 <tr key={stakeholder.id}>
                   <td className="px-5 py-4 font-medium text-ink">{stakeholder.name}</td>
-                  <td className="px-5 py-4 capitalize text-ink/70">{stakeholder.role}</td>
-                  <td className="px-5 py-4 text-ink/70">{stakeholder.email}</td>
-                  <td className="px-5 py-4 text-ink/70">{stakeholder.license_number}</td>
+                  <td className="px-5 py-4 capitalize text-ink-muted">{stakeholder.role}</td>
+                  <td className="px-5 py-4 text-ink-muted">{stakeholder.email}</td>
+                  <td className="px-5 py-4 text-ink-muted">{stakeholder.license_number}</td>
                   <td className="px-5 py-4">
-                    <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">
+                    <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-emerald-700">
                       {stakeholder.certificate_status}
                     </span>
                   </td>
@@ -139,10 +139,10 @@ export default function AdminStakeholdersPage() {
 
         {isDialogOpen ? (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/35 p-4">
-            <div className="w-full max-w-xl rounded-[2rem] border border-border bg-white p-6 shadow-2xl">
+            <div className="w-full max-w-xl rounded-2xl border border-border bg-white p-6 shadow-elevated">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs uppercase tracking-[0.3em] text-ink/50">New Stakeholder</p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-accent">New Stakeholder</p>
                   <h2 className="mt-2 text-2xl font-semibold text-ink">Issue credentials</h2>
                 </div>
 
@@ -169,7 +169,7 @@ export default function AdminStakeholdersPage() {
                     <Label htmlFor="role">Role</Label>
                     <select
                       id="role"
-                      className="h-11 rounded-2xl border border-border bg-white px-4 text-sm text-ink shadow-sm outline-none"
+                      className="h-11 rounded-xl border border-border bg-white px-4 text-sm text-ink shadow-sm outline-none"
                       value={formState.role}
                       onChange={(event) =>
                         setFormState((current) => ({ ...current, role: event.target.value }))

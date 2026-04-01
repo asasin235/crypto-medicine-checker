@@ -5,13 +5,13 @@ export default function DashboardPage() {
   return (
     <ProtectedRoute>
       <PageHero
-        eyebrow="Operations"
-        title="Dashboard placeholder"
-        description="The dashboard route is ready for supply-chain KPIs, verification alerts, and inventory rollups."
+        eyebrow="Overview"
+        title="Welcome to PharmaChain"
+        description="Your supply chain overview — real-time status of medicines, batches, and verifications."
         stats={[
-          { label: "Alerts queue", value: "0" },
-          { label: "Connected API", value: "Yes" },
-          { label: "Viewport support", value: "Mobile + Desktop" },
+          { label: "Active Stakeholders", value: "—" },
+          { label: "Medicines Tracked", value: "—" },
+          { label: "Batches in Transit", value: "—" },
         ]}
       />
     </ProtectedRoute>

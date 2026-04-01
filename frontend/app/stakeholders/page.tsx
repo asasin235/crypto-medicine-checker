@@ -4,12 +4,12 @@ export default function StakeholdersPage() {
   return (
     <PageHero
       eyebrow="Network"
-      title="Stakeholder registry placeholder"
-      description="Manufacturer, distributor, pharmacy, and regulator views will land here."
+      title="Stakeholder directory"
+      description="All certified participants in the PharmaChain network — manufacturers, distributors, pharmacies, and doctors."
       stats={[
-        { label: "Roles covered", value: "4" },
-        { label: "Validation-ready", value: "Yes" },
-        { label: "Table layout", value: "Planned" },
+        { label: "Manufacturers", value: "—" },
+        { label: "Distributors", value: "—" },
+        { label: "Pharmacies", value: "—" },
       ]}
     />
   );
