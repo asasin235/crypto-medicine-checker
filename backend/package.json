@@ -8,6 +8,7 @@
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
     "seed": "node src/migrations/seed.js",
+    "seed:dev": "node src/migrations/dev-seed.js",
     "test": "jest --runInBand",
     "test:unit": "jest --runInBand tests/unit",
     "test:integration": "jest --runInBand tests/integration",

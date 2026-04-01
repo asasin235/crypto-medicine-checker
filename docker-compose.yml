@@ -20,7 +20,8 @@ services:
       - ./backend/src/migrations/002_auth_core.sql:/docker-entrypoint-initdb.d/002_auth_core.sql:ro
       - ./backend/src/migrations/003_stakeholder_certificates.sql:/docker-entrypoint-initdb.d/003_stakeholder_certificates.sql:ro
       - ./backend/src/migrations/004_patient_aadhaar_hash.sql:/docker-entrypoint-initdb.d/004_patient_aadhaar_hash.sql:ro
-      - ./backend/src/seeds/001_genesis_ledger_block.sql:/docker-entrypoint-initdb.d/005_genesis_ledger_block.sql:ro
+      - ./backend/src/migrations/005_medicine_units.sql:/docker-entrypoint-initdb.d/005_medicine_units.sql:ro
+      - ./backend/src/seeds/001_genesis_ledger_block.sql:/docker-entrypoint-initdb.d/006_genesis_ledger_block.sql:ro
 
   backend:
     build:
