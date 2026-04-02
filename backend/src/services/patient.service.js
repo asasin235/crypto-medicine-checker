@@ -33,6 +33,15 @@ async function registerPatient(payload) {
   };
 }
 
+async function listPatients() {
+  const pool = getPool();
+  const [rows] = await pool.execute(
+    `SELECT id, full_name, email, date_of_birth, created_at FROM patients ORDER BY created_at DESC`
+  );
+  return rows;
+}
+
 module.exports = {
   registerPatient,
+  listPatients,
 };
