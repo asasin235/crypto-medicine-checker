@@ -5,3 +5,8 @@ node_modules/
 coverage/
 dist/
 *.log
+
+# Hyperledger Fabric artefacts
+fabric-network/_work/
+backend/fabric/wallet/
+backend/fabric/connection/

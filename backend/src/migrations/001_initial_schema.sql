@@ -95,17 +95,8 @@ CREATE TABLE IF NOT EXISTS prescriptions (
       ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS ledger_blocks (
-  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  block_index INT UNSIGNED NOT NULL,
-  previous_hash CHAR(64) NOT NULL,
-  current_hash CHAR(64) NOT NULL,
-  payload JSON NOT NULL,
-  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (id),
-  UNIQUE KEY unique_block_index (block_index),
-  UNIQUE KEY unique_block_hash (current_hash)
-);
+-- ledger_blocks table removed: the ledger now lives on Hyperledger Fabric.
+-- See chaincode/pharma-traceability and backend/src/services/ledger.service.js.
 
 CREATE TABLE IF NOT EXISTS verification_logs (
   id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,

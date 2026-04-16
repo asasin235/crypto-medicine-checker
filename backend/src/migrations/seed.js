@@ -2,7 +2,7 @@ const bcrypt = require("bcryptjs");
 
 const { closePool, getConnection } = require("../config/db");
 const { issueCertificate } = require("../services/certificate.service");
-const { encryptPrivateKey, generateKeyPair, hashSha256 } = require("../services/crypto.service");
+const { encryptPrivateKey, generateKeyPair } = require("../services/crypto.service");
 
 function getSeedConfig() {
   return {
@@ -13,29 +13,8 @@ function getSeedConfig() {
   };
 }
 
-async function ensureGenesisBlock(connection) {
-  const [rows] = await connection.execute(
-    "SELECT id FROM ledger_blocks WHERE block_index = 0 LIMIT 1"
-  );
-
-  if (rows.length > 0) {
-    return false;
-  }
-
-  const payload = JSON.stringify({
-    event: "genesis",
-    message: "Initial ledger block for pharma_chain",
-  });
-  const previousHash = "0".repeat(64);
-  const currentHash = hashSha256(`${previousHash}:${payload}:0`);
-
-  await connection.execute(
-    "INSERT INTO ledger_blocks (block_index, previous_hash, current_hash, payload) VALUES (?, ?, ?, ?)",
-    [0, previousHash, currentHash, payload]
-  );
-
-  return true;
-}
+// Genesis block provisioning moved to Fabric chaincode `InitLedger`.
+// See chaincode/pharma-traceability/src/pharma-contract.js.
 
 async function ensureCentralAuthorityAdmin(connection) {
   const config = getSeedConfig();
@@ -93,7 +72,6 @@ async function runSeed() {
 
   try {
     await connection.beginTransaction();
-    await ensureGenesisBlock(connection);
     await ensureCentralAuthorityAdmin(connection);
     await connection.commit();
   } catch (error) {
@@ -118,7 +96,6 @@ if (require.main === module) {
 
 module.exports = {
   ensureCentralAuthorityAdmin,
-  ensureGenesisBlock,
   getSeedConfig,
   runSeed,
 };
