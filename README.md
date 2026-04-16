@@ -1,10 +1,14 @@
 # Crypto Medicine Checker
 
-Sprint 1 foundation for a medicine traceability platform with:
+Medicine traceability platform built on **Hyperledger Fabric**:
 
-- `backend`: Express API with health checks, MySQL pool, validation, logger, and Jest tests
-- `frontend`: Next.js App Router shell with responsive placeholder routes
+- `chaincode/pharma-traceability`: Fabric chaincode (Node.js) — the source of truth for audit events
+- `fabric-network`: scripts to bring up a local Fabric test-network and deploy the chaincode
+- `backend`: Express API with MySQL pool, Fabric gateway, validation, logger, and Jest tests
+- `frontend`: Next.js App Router shell with responsive routes
 - `docker-compose.yml`: local stack for MySQL 8, backend, and frontend
+
+See [`HYPERLEDGER.md`](./HYPERLEDGER.md) for the chain architecture and bring-up instructions.
 
 ## Local development
 
@@ -42,9 +46,12 @@ Services:
 - Backend: `http://localhost:3001`
 - MySQL: `localhost:3306`
 
-On first startup, MySQL runs:
+On first startup, MySQL runs every file under `backend/src/migrations/*.sql`.
+The default database is `pharma_chain`. The ledger is no longer in MySQL —
+events live on the `pharma-traceability` chaincode. Bring up Fabric first:
 
-- `backend/src/migrations/001_initial_schema.sql`
-- `backend/src/seeds/001_genesis_ledger_block.sql`
-
-The default database is `pharma_chain`.
+```bash
+cd fabric-network
+./network.sh up
+./network.sh enroll
+```

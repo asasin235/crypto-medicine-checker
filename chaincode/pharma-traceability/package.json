@@ -1,0 +1,24 @@
+{
+  "name": "pharma-traceability-chaincode",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hyperledger Fabric chaincode for the PharmaChain medicine traceability ledger",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "fabric-chaincode-node start",
+    "test": "mocha --recursive test"
+  },
+  "dependencies": {
+    "fabric-contract-api": "^2.5.7",
+    "fabric-shim": "^2.5.7"
+  },
+  "devDependencies": {
+    "chai": "^4.3.10",
+    "mocha": "^10.4.0",
+    "sinon": "^17.0.1",
+    "sinon-chai": "^3.7.0"
+  }
+}

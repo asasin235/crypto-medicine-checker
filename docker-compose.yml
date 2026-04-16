@@ -21,7 +21,7 @@ services:
       - ./backend/src/migrations/003_stakeholder_certificates.sql:/docker-entrypoint-initdb.d/003_stakeholder_certificates.sql:ro
       - ./backend/src/migrations/004_patient_aadhaar_hash.sql:/docker-entrypoint-initdb.d/004_patient_aadhaar_hash.sql:ro
       - ./backend/src/migrations/005_medicine_units.sql:/docker-entrypoint-initdb.d/005_medicine_units.sql:ro
-      - ./backend/src/seeds/001_genesis_ledger_block.sql:/docker-entrypoint-initdb.d/006_genesis_ledger_block.sql:ro
+      - ./backend/src/migrations/006_drop_ledger_blocks.sql:/docker-entrypoint-initdb.d/006_drop_ledger_blocks.sql:ro
 
   backend:
     build:
@@ -43,6 +43,19 @@ services:
       CA_ADMIN_EMAIL: admin@pharmachain.local
       CA_ADMIN_NAME: PharmaChain Central Authority
       CA_ADMIN_PASSWORD: admin123
+      # Hyperledger Fabric wiring. Point these at the local test-network brought
+      # up via `./fabric-network/network.sh up`. The backend expects the
+      # connection profile + wallet to be present under backend/fabric/.
+      FABRIC_CHANNEL: pharmachannel
+      FABRIC_CHAINCODE: pharma-traceability
+      FABRIC_CONTRACT: PharmaContract
+      FABRIC_MSP_ID: Org1MSP
+      FABRIC_IDENTITY: pharmachain-admin
+      FABRIC_CA_ADMIN_USER: admin
+      FABRIC_CA_ADMIN_PASSWORD: adminpw
+      FABRIC_AS_LOCALHOST: "false"
+    volumes:
+      - ./backend/fabric:/app/fabric:ro
     ports:
       - "3001:3001"
 

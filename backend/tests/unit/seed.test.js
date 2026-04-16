@@ -14,22 +14,9 @@ jest.mock("../../src/services/certificate.service", () => ({
   })),
 }));
 
-const {
-  ensureCentralAuthorityAdmin,
-  ensureGenesisBlock,
-} = require("../../src/migrations/seed");
+const { ensureCentralAuthorityAdmin } = require("../../src/migrations/seed");
 
 describe("seed helpers", () => {
-  test("ensureGenesisBlock is idempotent", async () => {
-    const connection = {
-      execute: jest
-        .fn()
-        .mockResolvedValueOnce([[{ id: 1 }]]),
-    };
-
-    await expect(ensureGenesisBlock(connection)).resolves.toBe(false);
-  });
-
   test("ensureCentralAuthorityAdmin inserts admin only once", async () => {
     const connection = {
       execute: jest
@@ -40,5 +27,14 @@ describe("seed helpers", () => {
 
     await expect(ensureCentralAuthorityAdmin(connection)).resolves.toBe(true);
     expect(connection.execute).toHaveBeenCalledTimes(2);
+  });
+
+  test("ensureCentralAuthorityAdmin no-ops when admin exists", async () => {
+    const connection = {
+      execute: jest.fn().mockResolvedValueOnce([[{ id: 9 }]]),
+    };
+
+    await expect(ensureCentralAuthorityAdmin(connection)).resolves.toBe(false);
+    expect(connection.execute).toHaveBeenCalledTimes(1);
   });
 });
